@@ -1,0 +1,94 @@
+<div class="min-h-screen flex flex-col items-center justify-center bg-pink-50 p-6" style="background-image: url('assets/images/Cherry1.jpg');">
+  <h2 class="text-5xl font-semibold mb-6 text-pink-700">Grievance Form</h2>
+
+  <form
+    [formGroup]="grievanceForm"
+    (ngSubmit)="onSubmit()"
+    class="w-full max-w-lg p-8 rounded-lg shadow-lg border border-pink-200 bg-cover bg-center"
+    style="background-image: url('assets/images/Baby.jpg'); background-color: rgba(255, 255, 255, 0.3); background-blend-mode: overlay;"
+  >
+    <!-- Overlay for readability -->
+    <div class="backdrop-blur-[1px] bg-white/20 p-4 rounded-lg">
+      <div class="mb-6 text-center text-xl font-medium text-pink-800">
+        Hello, {{ fullName }} 
+      </div>
+      <!-- Title -->
+      <div class="mb-4">
+        <label class="block mb-1 font-medium text-pink-700" for="title">Title:</label>
+        <input
+          id="title"
+          formControlName="title"
+          type="text"
+          class="w-full rounded-md border border-pink-300 p-2 focus:outline-none focus:ring-2 focus:ring-pink-500"
+        />
+        <div *ngIf="grievanceForm.get('title')?.invalid && grievanceForm.get('title')?.touched" class="text-red-600 mt-1 text-sm">
+          <div *ngIf="grievanceForm.get('title')?.errors?.['required']">Title is required.</div>
+          <div *ngIf="grievanceForm.get('title')?.errors?.['minlength']">Minimum 3 characters.</div>
+        </div>
+      </div>
+
+      <!-- What's bothering you -->
+      <div class="mb-4">
+        <label class="block mb-1 font-medium text-pink-700" for="bothering">What's bothering you?</label>
+        <textarea
+          id="bothering"
+          formControlName="bothering"
+          rows="4"
+          class="w-full rounded-md border border-pink-300 p-2 focus:outline-none focus:ring-2 focus:ring-pink-500"
+        ></textarea>
+        <div *ngIf="grievanceForm.get('bothering')?.invalid && grievanceForm.get('bothering')?.touched" class="text-red-600 mt-1 text-sm">
+          <div *ngIf="grievanceForm.get('bothering')?.errors?.['required']">This field is required.</div>
+          <div *ngIf="grievanceForm.get('bothering')?.errors?.['minlength']">Minimum 10 characters.</div>
+        </div>
+      </div>
+
+      <!-- Mood -->
+      <div class="mb-4">
+        <label class="block mb-1 font-medium text-pink-700" for="mood">Mood:</label>
+        <select
+          id="mood"
+          formControlName="mood"
+          class="w-full rounded-md border border-pink-300 p-2 focus:outline-none focus:ring-2 focus:ring-pink-500"
+        >
+          <option value="" disabled>Select Mood</option>
+          <option value="😊">😊 Happy</option>
+          <option value="😐">😐 Neutral</option>
+          <option value="😔">😔 Sad</option>
+          <option value="😡">😡 Angry</option>
+          <option value="😰">😰 Anxious</option>
+        </select>
+        <div *ngIf="grievanceForm.get('mood')?.invalid && grievanceForm.get('mood')?.touched" class="text-red-600 mt-1 text-sm">
+          Mood is required.
+        </div>
+      </div>
+
+      <!-- Severity -->
+      <div class="mb-6">
+        <label class="block mb-1 font-medium text-pink-700" for="severity">Severity:</label>
+        <select
+          id="severity"
+          formControlName="severity"
+          class="w-full rounded-md border border-pink-300 p-2 focus:outline-none focus:ring-2 focus:ring-pink-500"
+        >
+          <option value="" disabled>Select Severity</option>
+          <option value="Low">🟢 Low</option>
+          <option value="Medium">🟡 Medium</option>
+          <option value="High">🟠 High</option>
+          <option value="Critical">🔴 Critical</option>
+        </select>
+        <div *ngIf="grievanceForm.get('severity')?.invalid && grievanceForm.get('severity')?.touched" class="text-red-600 mt-1 text-sm">
+          Severity is required.
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        [disabled]="grievanceForm.invalid"
+        class="w-full bg-pink-600 text-white py-2 rounded-md font-semibold hover:bg-pink-700 disabled:opacity-50"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
