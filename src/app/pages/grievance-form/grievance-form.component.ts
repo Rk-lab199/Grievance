@@ -44,10 +44,10 @@ export class GrievanceFormComponent implements OnInit {
       };
 
       emailjs.send(
-        'service_7d1nhxo',     // Your EmailJS service ID
-        'template_q9yih01',    // Your EmailJS template ID
+        'service_vrq7r0q',     // Your EmailJS service ID
+        'template_z4u9rm2',    // Your EmailJS template ID
         templateParams,
-        'MVojAQuzdLtVt68I2'    // Your EmailJS public key
+        '4RsB1bBY4Jrqt8FIC'    // Your EmailJS public key
       )
       .then(() => {
         this.toastr.success('Grievance submitted successfully!', 'Success');
